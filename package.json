@@ -1,0 +1,29 @@
+{
+  "name": "blockone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --watch",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix eosblocks",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "Gregory Humphrey",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "eosjs": "^20.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "concurrently": "^5.0.2",
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.2"
+  }
+}
