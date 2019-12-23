@@ -10,7 +10,8 @@ const router = express.Router();
  @access      Public
 */
 router.get("/", (req, res) => {
-  res.status(200).json({ msg: "Express Server" });
+  const blocks = [1, 2, 3, 4, 5];
+  res.status(200).json({ blocks: blocks });
 });
 
 /**              GET SPECIFIC BLOCK

@@ -21,11 +21,11 @@ Open Your Terminal
 ### Copy and paste the following lines below into your terminal:
 
 ```bash
-git clone https://github.com/GregGains/eos-recent-blocks
+git clone https://github.com/GregGains/eos-blocks-server
 ```
 
 ```bash
-cd BlockOne/
+cd eos-blocks-server/
 ```
 
 ```bash
@@ -33,11 +33,7 @@ npm install
 ```
 
 ```bash
-npm run clientinstall
-```
-
-```bash
-npm run dev
+npm start
 ```
 
 ## **Project Background:**
