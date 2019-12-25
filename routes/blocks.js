@@ -1,6 +1,6 @@
 // Packages
 const express = require("express");
-
+const { getRecentBlocks } = require("../utils/Helpers");
 // Init express router
 const router = express.Router();
 
@@ -9,8 +9,8 @@ const router = express.Router();
  @desc        Gets most recent blocks from the EOS blockchain
  @access      Public
 */
-router.get("/", (req, res) => {
-  const blocks = [1, 2, 3, 4, 5];
+router.get("/", async (req, res) => {
+  const blocks = await getRecentBlocks();
   res.status(200).json({ blocks: blocks });
 });
 

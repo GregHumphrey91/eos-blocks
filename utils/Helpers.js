@@ -18,15 +18,13 @@ const rpc = new JsonRpc("https://api.eosnewyork.io", {
 const getRecentBlocks = async () => {
   try {
     // Get recent block chain information.
-    const blockChain = await rpc.get_info();
+    const info = await rpc.get_info();
 
     // De-structure the head block number.
-    const { head_block_num } = blockChain;
+    const { head_block_num } = info;
 
     // Get the head block information.
     const firstBlock = await rpc.get_block(head_block_num);
-
-    console.log("THE FIRST BLOCK ", firstBlock.block_num, "\n\n");
 
     // De-structure the first block's previous ID.
     let { previous } = firstBlock;
@@ -35,26 +33,21 @@ const getRecentBlocks = async () => {
     let previousBlock = await rpc.get_block(previous);
 
     // Create an array containing the first and second block numbers.
-    let fullBlocks = [firstBlock, previousBlock];
+    let blockChain = [firstBlock, previousBlock];
 
     for (let i = 0; i < 8; i++) {
       // Re-assign the previous block to fetch each block before it.
       previousBlock = await rpc.get_block(previousBlock.previous);
 
       // Push each block in this chain to the all blocks array.
-      fullBlocks.push(previousBlock);
+      blockChain.push(previousBlock);
     }
 
-    // Display there are exactly ten blocks and their id numbers
-    fullBlocks.map((block, index) => {
-      console.log(index + 1, ": blockNumber: ", block.block_num);
-    });
-
-    return fullBlocks;
+    return blockChain;
   } catch (err) {
     console.log(err);
     return err;
   }
 };
 
-getRecentBlocks();
+module.exports = { getRecentBlocks };
