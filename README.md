@@ -10,7 +10,7 @@
 
  <!-- Italics use a SINGLE ASTERIK * symbol  -->
 
-_Use EOSJS to show most recent blocks from EOSIO blockchain in detail._
+_Use EOSJS to show most recent blocks from EOS blockchain in detail._
 
 <!-- STRONG TAGS USE DOUBLE ASTERIK **  -->
 
