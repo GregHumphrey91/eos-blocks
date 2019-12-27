@@ -35,11 +35,12 @@ const getRecentBlocks = async () => {
     // Create an array containing the first and second block numbers.
     let blockChain = [firstBlock, previousBlock];
 
+    // Use for loop to fetch remaining blocks from block chain.
     for (let i = 0; i < 8; i++) {
-      // Re-assign the previous block to fetch each block before it.
+      // Continuously re-assign the previous block variable to  fetch each block before it.
       previousBlock = await rpc.get_block(previousBlock.previous);
 
-      // Push each block in this chain to the all blocks array.
+      // Push each block in this chain to the block chain array.
       blockChain.push(previousBlock);
     }
 
@@ -50,4 +51,41 @@ const getRecentBlocks = async () => {
   }
 };
 
-module.exports = { getRecentBlocks };
+const reduceCount = async () => {
+  try {
+    // Get recent block chain information.
+    const info = await rpc.get_info();
+
+    // De-structure the head block number.
+    const { head_block_num } = info;
+
+    // Get the head block information.
+    const firstBlock = await rpc.get_block(head_block_num);
+
+    firstBlock.transactions.map((transaction, index) => {
+      let count = 0;
+      transaction.trx.transaction.actions
+        ? (count += transaction.trx.transaction.actions.length)
+        : console.log("No Transactions");
+
+      console.log(count);
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+reduceCount();
+
+// Asynchronous callback handler to reduce the amount of try-catch blocks.
+const asyncHandler = cb => {
+  return async (req, res, next) => {
+    try {
+      await cb(req, res, next);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  };
+};
+
+module.exports = { getRecentBlocks, asyncHandler };
