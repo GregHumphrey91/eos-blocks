@@ -51,6 +51,8 @@ const getRecentBlocks = async () => {
   }
 };
 
+var count = 0;
+
 const reduceCount = async () => {
   try {
     // Get recent block chain information.
@@ -62,20 +64,17 @@ const reduceCount = async () => {
     // Get the head block information.
     const firstBlock = await rpc.get_block(head_block_num);
 
-    firstBlock.transactions.map((transaction, index) => {
-      let count = 0;
-      transaction.trx.transaction.actions
-        ? (count += transaction.trx.transaction.actions.length)
-        : console.log("No Transactions");
-
-      console.log(count);
+    const transactions = firstBlock.transactions.map((transaction, index) => {
+      return transaction.trx.transaction;
     });
+    transactions.map(transaction => console.log(transaction));
+    return transactions;
   } catch (err) {
     console.log(err.message);
   }
 };
 
-reduceCount();
+// reduceCount();
 
 // Asynchronous callback handler to reduce the amount of try-catch blocks.
 const asyncHandler = cb => {
@@ -88,4 +87,4 @@ const asyncHandler = cb => {
   };
 };
 
-module.exports = { getRecentBlocks, asyncHandler };
+module.exports = { getRecentBlocks, asyncHandler, reduceCount };

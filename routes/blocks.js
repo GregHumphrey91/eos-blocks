@@ -1,6 +1,10 @@
 // Packages
 const express = require("express");
-const { getRecentBlocks, asyncHandler } = require("../utils/Helpers");
+const {
+  getRecentBlocks,
+  reduceCount,
+  asyncHandler
+} = require("../utils/Helpers");
 // Init express router
 const router = express.Router();
 
@@ -22,10 +26,9 @@ router.get(
  @desc        Gets a block by id number
  @access      Public
 */
-router.get("/:id", (req, res) => {
-  const id = req.params.id;
-
-  res.status(200).json({ id });
+router.get("/:id", async (req, res) => {
+  const actions = await reduceCount();
+  res.status(200).json({ actions });
 });
 
 module.exports = router;
