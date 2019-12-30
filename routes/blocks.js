@@ -1,10 +1,12 @@
 // Packages
 const express = require("express");
+
+// Eos.js helper functions
 const {
   getRecentBlocks,
-  reduceCount,
   asyncHandler
-} = require("../utils/Helpers");
+} = require("../controllers/eoscontroller");
+
 // Init express router
 const router = express.Router();
 
@@ -17,18 +19,9 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const blocks = await getRecentBlocks();
+
     res.status(200).json({ blocks: blocks });
   })
 );
-
-/**              GET SPECIFIC BLOCK
- @route       GET api/blocks/:id
- @desc        Gets a block by id number
- @access      Public
-*/
-router.get("/:id", async (req, res) => {
-  const actions = await reduceCount();
-  res.status(200).json({ actions });
-});
 
 module.exports = router;

@@ -1,5 +1,5 @@
 // Packages
-const { Api, JsonRpc } = require("eosjs");
+const { JsonRpc } = require("eosjs");
 const fetch = require("node-fetch");
 
 // Instantiate JsonRPC with EOS endpoint and the fetch library
@@ -10,11 +10,10 @@ const rpc = new JsonRpc("https://api.eosnewyork.io", {
 /**
     @name   GetRecentBlocks
 
-    @desc   -   Get's the 10 most recent blocks from block chain and returns their information.
+    @desc   -   Get the 10 most recent blocks from the blockchain and returns all information.
     @param {null} 
     @return {object} - An object containing ten of the most recent blocks from EOS Blockchain
  */
-
 const getRecentBlocks = async () => {
   try {
     // Get recent block chain information.
@@ -51,31 +50,6 @@ const getRecentBlocks = async () => {
   }
 };
 
-var count = 0;
-
-const reduceCount = async () => {
-  try {
-    // Get recent block chain information.
-    const info = await rpc.get_info();
-
-    // De-structure the head block number.
-    const { head_block_num } = info;
-
-    // Get the head block information.
-    const firstBlock = await rpc.get_block(head_block_num);
-
-    const transactions = firstBlock.transactions.map((transaction, index) => {
-      return transaction.trx.transaction;
-    });
-    transactions.map(transaction => console.log(transaction));
-    return transactions;
-  } catch (err) {
-    console.log(err.message);
-  }
-};
-
-// reduceCount();
-
 // Asynchronous callback handler to reduce the amount of try-catch blocks.
 const asyncHandler = cb => {
   return async (req, res, next) => {
@@ -87,4 +61,4 @@ const asyncHandler = cb => {
   };
 };
 
-module.exports = { getRecentBlocks, asyncHandler, reduceCount };
+module.exports = { getRecentBlocks, asyncHandler };
