@@ -44,8 +44,8 @@ This project integrates EOSIO blockchain information into a web based applicatio
 
 ## **Main View:**
 
-![HomePage](eosblocks/src/img/Blocks.png)
+![HomePage](client/src/img/Blocks.png)
 
 ## **Block Details:**
 
-![Details](eosblocks/src/img/BlockDetails.png)
+![Details](client/src/img/BlockDetails.png)
