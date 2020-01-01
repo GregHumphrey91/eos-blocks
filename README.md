@@ -1,4 +1,4 @@
-# EOSIO/EOS - Recent Blocks - Server
+# EOSIO/EOS - Recent Blocks
 
 ## **Abstract:**
 
@@ -11,11 +11,11 @@ Open Your Terminal
 ### Copy and paste the following lines below into your terminal:
 
 ```bash
-git clone https://github.com/GregGains/eos-blocks-server
+git clone https://github.com/GregGains/eos-blocks
 ```
 
 ```bash
-cd eos-blocks-server/
+cd eos-blocks/
 ```
 
 ```bash
@@ -23,7 +23,11 @@ npm install
 ```
 
 ```bash
-npm start
+npm clientinstall
+```
+
+```bash
+npm run dev
 ```
 
 ## **Project Background:**
@@ -37,3 +41,11 @@ This project integrates EOSIO blockchain information into a web based applicatio
 - Design a front-end user interface in React.
 - Write understandable and well commented code.
 - Unit test extensively.
+
+## **Main View:**
+
+![HomePage](eosblocks/src/img/Blocks.png)
+
+## **Block Details:**
+
+![Details](eosblocks/src/img/BlockDetails.png)
