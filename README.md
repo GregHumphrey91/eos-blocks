@@ -23,7 +23,7 @@ npm install
 ```
 
 ```bash
-npm clientinstall
+npm run clientinstall
 ```
 
 ```bash
