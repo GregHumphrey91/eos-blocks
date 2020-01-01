@@ -1,0 +1,25 @@
+nav {
+  border: solid 3px #3b5998;
+  background-color: #3b5998;
+  padding: 50px;
+  text-align: left;
+}
+nav a {
+  color: white;
+  margin-right: 10px;
+  font-size: 25px;
+}
+nav a.active {
+}
+nav a:hover {
+  transition: all 0.2s;
+  color: red;
+  border-bottom: solid 3px red;
+}
+
+/* For smaller screens */
+@media screen and (max-width: 740px) {
+  nav {
+    text-align: center;
+  }
+}
